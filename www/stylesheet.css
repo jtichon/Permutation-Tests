@@ -18,13 +18,14 @@ p {
     
 } 
 
-#shuffle1 {
+#shuffle1, #shuffle2 {
     font-size: medium;
     font-weight: bold;
     border-width: 2px;
     border-color: black;
     background-color: rgb(202, 234, 123);
 }
+
 
 /* body {
     background-color: rgb(250, 218, 223);
