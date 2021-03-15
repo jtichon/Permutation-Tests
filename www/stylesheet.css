@@ -11,6 +11,10 @@ p {
   font-size: 20px;
 }
 
+hr {
+  border-color: black;
+}
+
 .button {
     display: flex;
     align-items: center;
@@ -18,7 +22,7 @@ p {
     
 } 
 
-#shuffle1, #shuffle2 {
+#shuffle1, #shuffle2, #shuffleBike, #reflectBike, #simulateBike, #answerPropBike, #reflectBikePvalue {
     font-size: medium;
     font-weight: bold;
     border-width: 2px;
@@ -26,10 +30,6 @@ p {
     background-color: rgb(202, 234, 123);
 }
 
-
-/* body {
-    background-color: rgb(250, 218, 223);
-} */
 
 .shiny-input-container{
     font-size: large;
@@ -49,4 +49,27 @@ p {
 .label {
     font-size: large;
 } 
+
+.question {
+  font-weight: bold;
+  color: rgb(72, 149, 20);
+}
+
+.reflect {
+  border-top: solid black 2px;
+  border-bottom: solid black 2px;
+  padding: 1cm;
+}
+
+.preamble {
+  padding-top: 0.5cm;
+}
+
+.aside {
+  font-style: italic;
+}
+
+li {
+  font-size: large;
+}
 
