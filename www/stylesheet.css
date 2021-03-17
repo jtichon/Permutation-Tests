@@ -31,6 +31,16 @@ hr {
 }
 
 
+#shuffleChild, #reflectChild, #simulateChild, #answerPropChild, #reflectChildPvalue, #reflectChildAnswer {
+    font-size: medium;
+    font-weight: bold;
+    border-width: 2px;
+    border-color: black;
+    background-color: rgb(202, 234, 123);
+}
+
+
+
 .shiny-input-container{
     font-size: large;
 }
@@ -59,6 +69,7 @@ hr {
   border-top: solid black 2px;
   border-bottom: solid black 2px;
   padding: 1cm;
+  margin: 1cm;
 }
 
 .preamble {
