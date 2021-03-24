@@ -84,3 +84,18 @@ li {
   font-size: large;
 }
 
+.sideHeader {
+  text-align: left;
+  font-size: large;
+  color: rgb(72, 149, 20);
+  font-weight: bold;
+}
+
+.sideTalk {
+  text-align: left;
+}
+
+img {
+  width: 400px;
+}
+

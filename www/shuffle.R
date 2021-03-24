@@ -26,7 +26,7 @@ mix <- function(dat){
 diffMix <- function(dat) {
   diff.data <- vector()
   
-  for (i in 1:500)
+  for (i in 1:5000)
   {
     mixed <- mix(dat)
     as.data.frame(means <- mixed %>%

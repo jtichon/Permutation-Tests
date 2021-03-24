@@ -139,6 +139,60 @@ ui <- fluidPage(
     
     tabPanel("Testing",
              
+             # Statistical Question
+             fluidRow( style = "margin-bottom: 50px;",
+               column(6,
+                        p(class = "sideHeader", "Statistical Question"),
+                        p(class = "sideTalk",
+                          "Let's remind ourselves what we are doing in hypothesis testing. There is some default/`null' idea about the shape of a population. e.g. `The bottles are filled following a normal distribution with an average of 710ml'. We, as statisticians, have an alternate idea of what is going on `The bottles are filled with less than 710ml on average.' Here we are trying to decide if two populations have equal means."
+                        ),
+                        p("Math symbols showing H0: mu1=mu2"),
+                        p(class = "sideTalk", "This is the same thing as saying the difference in the means is 0."),
+                        p("Math symbols showing H0: mu1-mu2=0"),
+                        p(class = "sideTalk",
+                          "So we are testing whether the true difference in means is 0 or if it's different somehow."
+                        )
+                      ),
+               
+               
+               column(6,
+                      img(src="idea.png")
+                      )
+               
+             ),
+             
+             # Hypothesis Test
+             fluidRow( style = "margin-bottom: 50px;",
+               
+               column(6,
+                      p(class = "sideHeader", "Collect Data"),
+                      p(class = "sideTalk",
+                        "After we have made our hypothesis, we go out and collect data that is representative sample from each population. Our observations should be independent and ideally come from random samples though that is not always practical.")
+                      ),
+               
+               column(6,
+                      img(src="data.png")
+                      )
+  
+             ),
+             
+             # Shufflings
+             fluidRow( 
+               
+               column(6, 
+                      p(class = "sideHeader", "Shufflings"),
+                      p(class = "sideTalk", 
+                        "Next we will take our data, see what happened in our sample, and see how unusual that result would be against the null model we are trying to 'counter'. If our real life data falls in the center of the model of the population under H0, we will fail to reject. If our real life data is out in the tails of the model and would rarely happen under the null model (usually in the out 5% of the tails), then we conclude that this is an unusual event. As what we saw in real life would rarely happen when H0 is true, that likely means we have good evidence it is not and we should reject it."),
+                      p(class = "sideTalk",
+                        "Here, our shuffling represents a model under H0. When we shuffle, we are saying that the groupings don't matter because both groups come from populations with the same mean. If we shuffle many times and keep track of all the differences in means, this will provide us with a picture of population of all differences under H0, the world where shuffling is of no consequence.")
+                      ),
+               
+               column(6,
+                      img(src="model.png")
+                      )
+             
+             )
+             
              # End Tab Testing Panel
              ),
  
@@ -221,7 +275,7 @@ ui <- fluidPage(
             
             # Simulation for bike data
             fluidRow(
-              p("Let's", actionButton("simulateBike", "simulate"), "5,000 shuffles and make a histogram of all the group differences we observe. (", span(class = "aside", "Note this may take a few seconds to load"),")")
+              p("Let's", actionButton("simulateBike", "simulate"), "5,000 shuffles and make a histogram of all the group differences we observe. (", span(class = "aside", "Note this may take half a minute to load"),")")
             ),
             
             fluidRow(
@@ -281,7 +335,7 @@ ui <- fluidPage(
                       #Child Story Panel
                       div(class = "story",
                           
-                          p("Story about bikes here")
+                          p("There was a group of students at Cal Poly university that wanted to know if men with kids tended to live longer than men without kids. They took a random sample of men from the obituaries page in the", em("San Luis Obispo Tribune"), "webpage from June and November 2012. They noted the age of death of every male obituary and whether they were listed as having had kids or not.")
                       ),
                       
                       # Row for data show buttons
@@ -349,11 +403,11 @@ ui <- fluidPage(
                           
                       ),
                       
-                      p(class = "preamble", "Pre-amble talk about simulating for children"),
+                      p(class = "preamble", "Now let's use simulation to see how many times, in a random shuffling of the groups, would we get means further apart than 78.43 - 63.90  = 14.53 in the positive directiohn OR further apart than -14.53 in the negative direction."),
                       
                       # Simulation for child data
                       fluidRow(
-                        p("Let's", actionButton("simulateChild", "simulate"), "5,000 shuffles and make a histogram of all the group differences we observe. (", span(class = "aside", "Note this may take a few seconds to load"),")")
+                        p("Let's", actionButton("simulateChild", "simulate"), "5,000 shuffles and make a histogram of all the group differences we observe. (", span(class = "aside", "Note this may take half a minute to load"),")")
                       ),
                       
                       fluidRow(
@@ -452,7 +506,7 @@ ui <- fluidPage(
       observeEvent(input$shuffle1, {
         output$morediff <-
           renderText({
-            "They become more different!"
+            "The means/medians become more different (further apart) than in the original sample!"
           })
       })
       
@@ -499,7 +553,7 @@ ui <- fluidPage(
       observeEvent(input$shuffle2, {
         output$moresame <-
           renderText({
-            "They become more similar!"
+            "The means/medians become more similar (closer together) than in the original sample!"
           })
       })
       
@@ -629,7 +683,7 @@ ui <- fluidPage(
           tags$ol(
             tags$li("We notice that the center lines in both boxplots are fairly close together. As the boxplots are relatively symmetric, the means should be approximately equal to the medians. This is a good indication the means are not significantly different."),
             tags$li("When we shuffle the boxplots, we notice that the medians (and hence means), tend to get further apart nearly every time. Samples that become more different when shuffled is a good indication that the means are similar."),
-            tags$li(paste("We can calculate that the mean of the steel frames is actually 107.81 and the mean of the carbon frames is actually 108.34 which are very close considering the standard deviation of all bike times is 5.52. This is another good indication that a statistical test would conclude the means are equal." ))
+            tags$li(paste("We can calculate that the mean of the steel frames is actually 107.81 and the mean of the carbon frames is actually 108.34 which are very close considering it is a difference of approximately half a minute over a 27 mile bike ride which likely included at least some traffic considering he is a medical researcher that likely works in a city." ))
              )
         })
       })
@@ -825,9 +879,9 @@ ui <- fluidPage(
        
        output$answerChild <- renderUI({
          tags$ol(
-           tags$li("Point based on boxplot"),
-           tags$li("Point based on shufflings."),
-           tags$li(paste("Point based on sample statistics. This is another good indication that a statistical test would conclude the means are not equal." ))
+           tags$li("We notice that the center lines in the boxplots are not close together. Though one of the boxplots is not symmetric, so the median and mean are not the same, the skewness would suggest that mean for men without children is even lower than the median. This suggests the means are even further apart than the medians."),
+           tags$li("When we shuffle the boxplots, we notice the medians (and hence the means), tend to get closer together than in the original sample nearly every time. Samples whose means become more similar when shuffled, is a good indication that the means are in fact statistically different from one another."),
+           tags$li("We can calculate that the mean age of death for men with children is 78.43 and the mean age of death for men without children is 63.9 which are far apart ." )
          )
        })
      })
@@ -850,10 +904,10 @@ ui <- fluidPage(
                         colour = "red", arrow = arrow()) +
            geom_segment(x = 14.53, y = 1200, xend = 14.53, yend = 0, 
                         colour = "red", arrow = arrow()) +
-           geom_text(x = -15, y = 650, label = "-14.53", 
-                     colour = "red", size = 7, hjust = 1) +
-           geom_text(x = 15, y = 650, label = "14.53", 
-                     hjust = 0, colour = "red", size = 7) +
+           geom_text(x = -14, y = 650, label = "-14.53", 
+                     colour = "red", size = 7, hjust = 0) +
+           geom_text(x = 14, y = 650, label = "14.53", 
+                     hjust = 1, colour = "red", size = 7) +
            theme_light() +
            labs(
              x = "Differences",
